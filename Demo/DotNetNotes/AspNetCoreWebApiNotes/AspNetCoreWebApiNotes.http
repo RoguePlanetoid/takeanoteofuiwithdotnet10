@@ -1,0 +1,40 @@
+@Host = https://localhost:7143
+@NoteId = 1
+
+### Backgrounds - List
+GET {{Host}}/backgrounds
+Accept: application/json
+
+### Notes - List
+GET {{Host}}/notes
+Accept: application/json
+
+### Notes - Get by Id
+GET {{Host}}/notes/{{NoteId}}
+Accept: application/json
+
+### Notes - Create
+POST {{Host}}/notes
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "First Note",
+  "content": "Hello from Minimal API",
+  "background": "Blue"
+}
+
+### Notes - Update
+PUT {{Host}}/notes/{{NoteId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Updated Note",
+  "content": "Updated content",
+  "background": "Violet"
+}
+
+### Notes - Delete
+DELETE {{Host}}/notes/{{NoteId}}
+Accept: application/json

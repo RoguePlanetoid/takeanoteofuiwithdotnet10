@@ -1,0 +1,50 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "header": null,
+  "body": [
+    {
+      "type": "Input.Text",
+      "id": "Identifier",
+      "value": "${note.Identifier}",
+      "isVisible": false
+    },
+    {
+      "type": "Input.Text",
+      "id": "Title",
+      "value": "${note.Title}",
+      "isVisible": false
+    },
+    {
+      "type": "Input.Text",
+      "id": "Content",
+      "value": "${note.Content}",
+      "isVisible": false
+    },
+    {
+      "type": "Input.Text",
+      "id": "Background",
+      "value": "${note.Background}",
+      "isVisible": false
+    },
+    {
+      "type": "TextBlock",
+      "text": "Are you sure you want to Delete this Note?",
+      "wrap": true,
+      "spacing": "Small"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Yes",
+      "verb": "confirm"
+    },
+    {
+      "type": "Action.Execute",
+      "title": "No",
+      "verb": "cancel"
+    }
+  ]
+}

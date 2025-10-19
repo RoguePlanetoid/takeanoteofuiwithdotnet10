@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="456" height="456" viewBox="0 0 456 456" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<path id="primary" d="M 0,233.33333 V 0 H 233.33333 466.66666 V 183.69805 367.3961 l -57.66667,49.60273 -57.66666,49.60274 -175.66667,0.0325 L 0,466.66666 Z" fill="#ffc476" />
+	<path id="secondary" d="m 351.70982,366.69855 114.94703,0.77358 -115.33333,99.12108 z" fill="rgba(255,255,255,0.3)" />
+	<rect x="0" y="0" width="466.67" height="70" fill="rgba(0,0,0,0.15)" />
+</svg>
+

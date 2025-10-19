@@ -416,3 +416,11 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/Demo/DotNetNotes/AspNetCoreWebApiNotes/appsettings.notes.json
+/Demo/DotNetNotes/AspNetCoreWebAppNotes/appsettings.notes.json
+/Demo/DotNetNotes/BlazorServerNotes/appsettings.notes.json
+/Demo/DotNetNotes/ConsoleNotes/appsettings.notes.json
+/Demo/DotNetNotes/McpNotes/appsettings.notes.json
+/Demo/DotNetNotes/WinAppSdkNotes/appsettings.notes.json
+/Demo/DotNetNotes/WinFormsNotes/appsettings.notes.json
+/Demo/DotNetNotes/WpfNotes/appsettings.notes.json

@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "McpNotes": {
+      "type": "stdio",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "C:\\GitHub\\takeanoteofuiwithdotnet10\\Demo\\DotNetNotes\\McpNotes\\"
+      ]
+    }
+  }
+}

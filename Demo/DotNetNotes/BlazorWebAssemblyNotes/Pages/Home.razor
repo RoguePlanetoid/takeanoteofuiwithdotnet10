@@ -1,0 +1,184 @@
+﻿@page "/"
+@inject IApplicationProvider _application
+<main>
+    @if (ShowModal)
+    {
+        <div class="modal-backdrop fade show"></div>
+        <div class="modal fade show d-block">
+            <div class="modal-dialog modal-lg">
+                <EditForm EditContext="EditContext" OnValidSubmit="HandleValidSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+                    <DataAnnotationsValidator />
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">@(IsEdit ? "Edit Note" : "New Note")</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @onclick="Hide"></button>
+                        </div>
+                        <div class="modal-body">
+                            <NoteInput Note="Note" />
+                        </div>
+                        <div class="modal-footer">
+                            @if(IsEdit)
+                            {
+                                @if (ShowConfirm)
+                                {
+                                    <div class="me-auto text-danger">Are you sure you want to Delete this Note?</div>                                    
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-danger me-auto" @onclick="() => ShowConfirm = true">Delete Note</button>
+                                }
+                            }
+                            @if (ShowConfirm)
+                            {
+                                <button type="submit" class="btn btn-outline-danger" @onclick="Delete">Yes</button>
+                                <button type="button" class="btn btn-outline-secondary" @onclick="() => ShowConfirm = false">No</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @onclick="Hide">Cancel</button>
+                            }
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    }
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between m-1">
+        <a href="#" @onclick="@List">
+            <img src="@NoteAsset.GetAsDataUri()" height="32" width="32" />
+        </a>
+        <div class="text-end">
+            <button type="button" class="btn btn-primary" @onclick="New">
+                New Note
+            </button>
+        </div>
+    </header>
+    <section>
+        <div class="d-flex flex-wrap m-1">
+            @foreach (var item in Notes)
+            {
+                <div class="m-1">
+                    <a href="#" @onclick="() => Edit(item)">
+                        <img src="@NoteAsset.GetAsDataUri(ColorTranslator.FromHtml(item.Background), item.Title, item.Content)"
+                             height="300" width="300" />
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+</main>
+@code {
+    /// <summary>
+    /// Show Modal?
+    /// </summary>
+    private bool ShowModal { get; set; } = false;
+
+    /// <summary>
+    /// Show Confirm?
+    /// </summary>    
+    private bool ShowConfirm { get; set; } = false;
+
+    /// <summary>
+    /// Is Edit?
+    /// </summary>
+    private bool IsEdit { get; set; } = false;
+
+    /// <summary>
+    /// Note
+    /// </summary>    
+    private NoteModel Note { get; set; } = new();
+
+    /// <summary>
+    /// Notes
+    /// </summary>    
+    private IEnumerable<NoteModel> Notes { get; set; } = [];
+
+    /// <summary>
+    /// Edit Context
+    /// </summary>
+    private EditContext? EditContext = default;
+
+    /// <summary>
+    /// List
+    /// </summary>
+    private async Task List() =>
+        Notes = await _application.ListAsync();
+
+    /// <summary>
+    /// New
+    /// </summary>
+    private void New()
+    {
+        Note = new();
+        IsEdit = false;        
+        ShowModal = true;
+        ShowConfirm = false;
+        EditContext = new EditContext(Note);
+    }
+
+    /// <summary>
+    /// Edit
+    /// </summary>
+    /// <param name="note">Note Model</param>
+    private void Edit(NoteModel note)
+    {
+        Note = note;
+        IsEdit = true;        
+        ShowModal = true;
+        ShowConfirm = false;
+        EditContext = new EditContext(Note);
+    }
+
+    /// <summary>
+    /// Delete
+    /// </summary>
+    private async Task Delete()
+    {
+        if (IsEdit)
+            await _application.DeleteAsync(Note, true);
+        await List();
+        Hide();
+        Note = new();
+        EditContext = new EditContext(Note);
+    }
+
+    /// <summary>
+    /// Hide
+    /// </summary>
+    private void Hide()
+    {
+        ShowModal = false;
+        ShowConfirm = false;
+    }
+
+    /// <summary>
+    /// Handle valid submit
+    /// </summary>
+    private async Task HandleValidSubmit()
+    {
+        if (IsEdit)
+            await _application.EditAsync(Note, true);
+        else
+            await _application.NewAsync(Note, true);            
+        await List();
+        Hide();
+        Note = new();
+        EditContext = new EditContext(Note);
+    }
+
+    /// <summary>
+    /// Handle invalid submit
+    /// </summary>
+    private Task HandleInvalidSubmit(EditContext _)
+        => Task.CompletedTask;
+
+    /// <summary>
+    /// On Initialised 
+    /// </summary>    
+    protected override async Task OnInitializedAsync()
+    {
+        EditContext = new EditContext(Note);
+        await List();
+    }
+}

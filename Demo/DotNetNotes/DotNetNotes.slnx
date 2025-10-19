@@ -1,0 +1,22 @@
+<Solution>
+  <Project Path="AspNetCoreWebApiNotes/AspNetCoreWebApiNotes.csproj" Id="7a42fa11-5c8c-403f-b1d9-fc975d6117bc" />
+  <Project Path="AspNetCoreWebAppNotes/AspNetCoreWebAppNotes.csproj" Id="184df022-0c1b-4edd-a991-f771dac5d353" />
+  <Project Path="BlazorServerNotes/BlazorServerNotes.csproj" Id="63004fb4-7b51-4b50-a390-ebf3af530e35" />
+  <Project Path="BlazorWebAssemblyNotes/BlazorWebAssemblyNotes.csproj" Id="20a69091-ee79-4287-b07e-5f98b1beaa77" />
+  <Project Path="ConsoleNotes/ConsoleNotes.csproj" Id="2c306442-9d6b-4909-b6cf-974bbb1cf303" />
+  <Project Path="DotNetNotes/DotNetNotes.csproj" />
+  <Project Path="MauiNotes/MauiNotes.csproj" Id="59789eb4-a56d-45a4-8c7e-cdfbe6b972fe">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="McpNotes/McpNotes.csproj" Id="bcc63e80-9705-4386-b73e-a25beddf2e94" />
+  <Project Path="UwpNotes/UwpNotes.csproj">
+    <Platform Project="x64" />
+    <Deploy />
+  </Project>
+  <Project Path="WinAppSdkNotes/WinAppSdkNotes.csproj">
+    <Platform Project="x64" />
+    <Deploy />
+  </Project>
+  <Project Path="WinFormsNotes/WinFormsNotes.csproj" />
+  <Project Path="WpfNotes/WpfNotes.csproj" />
+</Solution>

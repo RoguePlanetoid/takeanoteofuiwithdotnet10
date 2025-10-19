@@ -1,0 +1,84 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "header": null,
+  "body": [
+    {
+      "type": "Input.Text",
+      "id": "Identifier",
+      "value": "${note.Identifier}",
+      "isVisible": false
+    },
+    {
+      "type": "Input.Text",
+      "id": "Title",
+      "placeholder": "Title",
+      "value": "${Note.Title}",
+      "maxLength": 50,
+      "label": "Title"
+    },
+    {
+      "type": "Input.Text",
+      "id": "Content",
+      "placeholder": "Content",
+      "value": "${Note.Content}",
+      "isMultiline": true,
+      "maxLength": 255,
+      "label": "Content"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Background",
+      "wrap": true,
+      "spacing": "Small"
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "Background",
+      "value": "${Note.Background}",
+      "choices": [
+        {
+          "title": "Red",
+          "value": "#ff4947"
+        },
+        {
+          "title": "Orange",
+          "value": "#f57900"
+        },
+        {
+          "title": "Yellow",
+          "value": "#ffc476"
+        },
+        {
+          "title": "Green",
+          "value": "#6dc0a4"
+        },
+        {
+          "title": "Blue",
+          "value": "#6f9acd"
+        },
+        {
+          "title": "Indigo",
+          "value": "#833db8"
+        },
+        {
+          "title": "Violet",
+          "value": "#c693c2"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Save",
+      "verb": "save"
+    },
+    {
+      "type": "Action.Execute",
+      "title": "Cancel",
+      "verb": "cancel"
+    }
+  ]
+}

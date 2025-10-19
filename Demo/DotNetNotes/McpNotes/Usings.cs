@@ -1,0 +1,10 @@
+﻿global using DotNetNotes;
+global using DotNetNotes.Models;
+global using DotNetNotes.Providers;
+global using McpNotes;
+global using McpNotes.Tools;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
+global using ModelContextProtocol.Server;
+global using System.ComponentModel;

@@ -1,0 +1,60 @@
+﻿@page "/Edit/{noteId}"
+@model EditModel
+@{
+    ViewData["Title"] = Model.Note.Title;
+}
+<div class="modal fade" id="note-modal" tabindex="-1" aria-labelledby="note-modal-title" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Note?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input asp-for="NoteId" type="hidden" />
+                    <div class="text-center">
+                        <img src="@NoteAsset.GetAsDataUri(ColorTranslator.FromHtml(Model.Note.Background), Model.Note.Title, Model.Note.Content)"
+                        height="250" width="250" />
+                    </div>
+                    <p>Are you sure you want to Delete this Note?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" asp-page-handler="Delete">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<main>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between m-1">
+        <a href="/">
+            <img src="@NoteAsset.GetAsDataUri()" height="32" width="32" />
+        </a>
+        <div class="text-end">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#note-modal">
+                Delete Note
+            </button>
+        </div>
+    </header>
+    <section>
+        <div class="d-flex flex-wrap m-1">
+            <div class="row">
+                <div class="col-12">
+                    <form method="post">
+                        <div class="card">
+                            <div class="card-body">
+                                <vc:note-input note="@Model.Note" />
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary" asp-page-handler="Edit">Save</button>
+                                <a href="/" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
