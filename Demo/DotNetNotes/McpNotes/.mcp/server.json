@@ -1,0 +1,21 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/draft/2025-07-09/server.json",
+  "description": "McpNotes",
+  "name": "io.github.rogueplanetoid/takeanoteofuiwithdotnet10",
+  "packages": [
+    {
+      "registry_name": "nuget",
+      "name": "McpNotes",
+      "version": "1.0.0",
+      "package_arguments": [],
+      "environment_variables": []
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/RoguePlanetoid/takeanoteofuiwithdotnet10",
+    "source": "github"
+  },
+  "version_detail": {
+    "version": "1.0.0"
+  }
+}

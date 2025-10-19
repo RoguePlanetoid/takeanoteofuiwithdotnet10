@@ -1,0 +1,164 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "Container",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "horizontalAlignment": "Left",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Execute",
+                      "title": "🔄",
+                      "verb": "refresh"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Execute",
+                      "title": "🆕",
+                      "verb": "new"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "notesRepeater",
+      "items": [
+        {
+          "type": "Container",
+          "$data": "${notes}",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "verticalContentAlignment": "Center",
+                  "items": [
+                    {
+                      "type": "ActionSet",
+                      "actions": [
+                        {
+                          "type": "Action.Execute",
+                          "title": "${Title}",
+                          "verb": "select",
+                          "data": {
+                            "noteId": "${Identifier}"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "verticalContentAlignment": "Center",
+                  "items": [
+                    {
+                      "type": "ActionSet",
+                      "actions": [
+                        {
+                          "type": "Action.Execute",
+                          "title": "✏️",
+                          "verb": "edit",
+                          "data": {
+                            "noteId": "${Identifier}"
+                          }
+                        },
+                        {
+                          "type": "Action.Execute",
+                          "title": "❌",
+                          "style": "destructive",
+                          "verb": "delete",
+                          "data": {
+                            "noteId": "${Identifier}"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "horizontalAlignment": "Center",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "isVisible": "${showPrev}",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Execute",
+                      "title": "⏮️",
+                      "verb": "prev"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "isVisible": "${showNext}",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Execute",
+                      "title": "⏭️",
+                      "verb": "next"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

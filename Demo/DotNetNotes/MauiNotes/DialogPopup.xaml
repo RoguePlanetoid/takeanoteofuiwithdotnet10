@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:controls="clr-namespace:MauiNotes.Controls;assembly=MauiNotes"
+               xmlns:popups="clr-namespace:MauiNotes"
+               x:Class="MauiNotes.DialogPopup">
+    <toolkit:Popup.Resources>
+        <controls:StringToBrushConverter x:Key="StringToBrushConverter" />
+        <Style TargetType="{x:Type popups:DialogPopup}">
+            <Setter Property="MaximumHeightRequest" Value="600" />
+            <Setter Property="MaximumWidthRequest" Value="500" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </toolkit:Popup.Resources>
+    <ScrollView>
+        <VerticalStackLayout Padding="5">
+            <Label Text="{Binding Title}" HorizontalOptions="Center" Margin="5" TextColor="{StaticResource Tertiary}" />
+            <Label Text="Title" />
+            <Entry Text="{Binding Note.Title, Mode=TwoWay}"/>
+            <Label Text="Content" />
+            <Entry Text="{Binding Note.Content, Mode=TwoWay}"/>
+            <Label Text="Background" />
+            <CollectionView SelectedItem="{Binding Note.Background, Mode=TwoWay}" ItemsSource="{Binding Colours}" SelectionMode="Single" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:NoteControl Size="32"
+                        Fill="{Binding ., Converter={StaticResource StringToBrushConverter}}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="{Binding PrimaryOption}" Clicked="PrimaryOption" Margin="5"/>
+            <Button Text="{Binding SecondaryOption}" Clicked="SecondaryOption" Margin="5" />
+        </VerticalStackLayout>
+    </ScrollView>
+</toolkit:Popup>

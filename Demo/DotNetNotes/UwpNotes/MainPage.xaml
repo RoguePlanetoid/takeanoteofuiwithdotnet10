@@ -1,0 +1,97 @@
+﻿<Page
+    x:Class="UwpNotes.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UwpNotes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:models="using:DotNetNotes.Models" 
+    xmlns:commands="using:UwpNotes.Commands"
+    xmlns:controls="using:UwpNotes.Controls"
+    xmlns:binder="using:UwpNotes.Binder"
+    d:DataContext="{d:DesignInstance Type=models:ContentModel}"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    x:Name="Display">
+    <Page.Resources>
+        <controls:StringToBrushConverter x:Key="StringToBrushConverter" />
+        <commands:CommandToRelayCommandConverter x:Key="CommandToRelayCommandConverter" />
+        <binder:NoteViewModelToNoteModelConverter x:Key="NoteViewModelToNoteModelConverter" />
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Dialogs -->
+        <ContentDialog x:Name="UpsertDialog" Title="{x:Bind DialogModel.Title}" Tag="{x:Bind DialogModel}"
+            PrimaryButtonText="{x:Bind DialogModel.PrimaryOption}" 
+            SecondaryButtonText="{x:Bind DialogModel.SecondaryOption}">
+            <StackPanel Orientation="Vertical" Width="250">
+                <TextBox Header="Title" Text="{x:Bind DialogModel.Note.Title, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
+                <TextBox Header="Content" Text="{x:Bind DialogModel.Note.Content, Mode=TwoWay}" HorizontalAlignment="Stretch" 
+                AcceptsReturn="True" TextWrapping="Wrap" Height="100" />
+                <ComboBox Header="Background" SelectedItem="{x:Bind DialogModel.Note.Background, Mode=TwoWay}"
+                    ItemsSource="{x:Bind DialogModel.Colours}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <controls:NoteControl Height="32" Width="32"            
+                             Fill="{Binding Converter={StaticResource StringToBrushConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </ContentDialog>
+        <ContentDialog x:Name="DeleteDialog" Title="{x:Bind DialogModel.Title}" 
+            PrimaryButtonText="{x:Bind DialogModel.PrimaryOption}" 
+            SecondaryButtonText="{x:Bind DialogModel.SecondaryOption}">
+            <StackPanel Orientation="Vertical">
+                <controls:NoteControl Height="250" Width="250" Margin="5" 
+                 Title="{x:Bind DialogModel.Note.Title}" Content="{x:Bind DialogModel.Note.Content}"
+                 Fill="{x:Bind DialogModel.Note.Background, Converter={StaticResource StringToBrushConverter}}"/>
+                <TextBlock Text="Are you sure you want to Delete this Note?"/>
+            </StackPanel>
+        </ContentDialog>
+        <!-- / Dialogs -->
+        <Button Grid.Row="0" Margin="5" Command="{x:Bind ViewModel.ListAction.Command, 
+            Converter={StaticResource CommandToRelayCommandConverter}}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <controls:NoteControl Height="32" Width="32" />
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <ItemsControl Grid.Row="1" Margin="10" 
+            ItemsSource="{x:Bind Notes}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="Delete" HorizontalAlignment="Right"
+                        Command="{Binding DataContext.DeleteAction, ElementName=Display}" 
+                        CommandParameter="{Binding Converter={StaticResource NoteViewModelToNoteModelConverter}}"/>
+                        <Button Command="{Binding DataContext.EditAction, ElementName=Display}"
+                        CommandParameter="{Binding Converter={StaticResource NoteViewModelToNoteModelConverter}}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <controls:NoteControl Height="250" Width="250" Margin="5" 
+                                    Title="{Binding Path=Title}" Content="{Binding Path=Content}"
+                                    Fill="{Binding Path=Background, Converter={StaticResource StringToBrushConverter}}"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <CommandBar Grid.Row="2" IsOpen="True" VerticalAlignment="Bottom">
+            <AppBarButton Name="Toggle" Icon="Page2" Command="{x:Bind ViewModel.NewAction.Command, 
+                Converter={StaticResource CommandToRelayCommandConverter}}"/>
+        </CommandBar>
+    </Grid>
+</Page>

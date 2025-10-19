@@ -1,0 +1,36 @@
+﻿@inject IApplicationProvider _application
+@model NoteModel
+<input asp-for="Id" type="hidden" />
+<div class="row mb-3">
+    <div class="col-3"><label for="name" class="form-label">Title</label></div>
+    <div class="col-9">
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-3"><label for="content" class="form-label">Content</label></div>
+    <div class="col-9">
+        <textarea asp-for="Content" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-3"><label for="background" class="form-label">Background</label></div>
+    <div class="col-9">
+        <div>
+            @for (int index = 0; index < BackgroundModel.Values.Count; index++)
+            {
+                var colour = BackgroundModel.Values[index];
+                <div class="form-check form-check-inline">
+                    <input type="radio" asp-for="Background" id="@index" class="form-check-input" Value="@colour" />
+                    <label class="form-check-label" for="@index">
+                        <img src="@NoteAsset.GetAsDataUri(ColorTranslator.FromHtml(colour))"
+                             height="32" width="32" />
+                    </label>
+                </div>
+            }
+        </div>
+        <span asp-validation-for="Background" class="text-danger"></span>
+    </div>
+</div>

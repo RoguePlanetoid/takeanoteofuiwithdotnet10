@@ -1,0 +1,13 @@
+﻿global using AspNetCoreWebApiNotes;
+global using AspNetCoreWebApiNotes.Attributes;
+global using AspNetCoreWebApiNotes.Endpoints;
+global using AspNetCoreWebApiNotes.Requests;
+global using AspNetCoreWebApiNotes.Responses;
+global using AspNetCoreWebApiNotes.Transformers;
+global using DotNetNotes;
+global using DotNetNotes.Models;
+global using DotNetNotes.Providers;
+global using Microsoft.AspNetCore.OpenApi;
+global using Microsoft.OpenApi;
+global using System.ComponentModel.DataAnnotations;
+global using System.Text.Json.Nodes;

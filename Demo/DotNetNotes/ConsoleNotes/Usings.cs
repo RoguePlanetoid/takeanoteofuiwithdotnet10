@@ -1,0 +1,9 @@
+﻿global using ConsoleNotes;
+global using ConsoleNotes.Enums;
+global using ConsoleNotes.Providers;
+global using DotNetNotes;
+global using DotNetNotes.Models;
+global using DotNetNotes.Providers;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using System.Text;

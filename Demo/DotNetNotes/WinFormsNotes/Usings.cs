@@ -1,0 +1,10 @@
+﻿global using DotNetNotes;
+global using DotNetNotes.Models;
+global using DotNetNotes.Providers;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using System.ComponentModel;
+global using System.Drawing.Drawing2D;
+global using System.Reflection;
+global using WinFormsNotes.Controls;
+global using WinFormsNotes.Tray;

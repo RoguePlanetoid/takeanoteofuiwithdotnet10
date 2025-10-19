@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WinAppSdkNotes (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WinAppSdkNotes (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

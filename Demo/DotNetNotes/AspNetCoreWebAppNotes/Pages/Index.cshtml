@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Notes";
+}
+<div class="modal fade" id="note-modal" tabindex="-1" aria-labelledby="note-modal-title" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <form method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <vc:note-input note="null" />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<main>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between m-1">
+        <a href="/">
+            <img src="@NoteAsset.GetAsDataUri()" height="32" width="32" />
+        </a>
+        <div class="text-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#note-modal">
+                New Note
+            </button>
+        </div>
+    </header>
+    <section>
+        <div class="d-flex flex-wrap m-1">
+            @foreach (var item in Model.Notes)
+            {
+                <div class="m-1">
+                    <a href="/Edit/@item.Id">
+                        <img src="@NoteAsset.GetAsDataUri(ColorTranslator.FromHtml(item.Background), item.Title, item.Content)"
+                             height="300" width="300" />
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+</main>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var el = document.getElementById('note-modal');
+                var modal = bootstrap.Modal.getOrCreateInstance(el);
+                modal.show();
+            });
+        </script>
+    }
+}
