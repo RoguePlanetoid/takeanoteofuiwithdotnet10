@@ -36,5 +36,11 @@ public static class NoteModelExtensions
         /// </summary>
         public string? AssetDataUri => 
             NoteAsset.GetAsDataUri(FromHtml(note.Background), note.Title, note.Content);
+
+        /// <summary>
+        /// Asset Primary Data URI
+        /// </summary>
+        public string? AssetPrimaryDataUri =>
+            NoteAsset.GetPrimaryAsDataUri(FromHtml(note.Background));
     }
 }

@@ -33,6 +33,30 @@ public class NoteAsset : AssetBase<NoteAsset>
     }
 
     /// <summary>
+    /// Get Asset Primary String
+    /// </summary>
+    /// <param name="svg">XML Document</param>
+    /// <param name="fill">Fill Colour</param>
+    /// <param name="manager">XML Namespace Manager</param>
+    /// <returns>XML Document</returns>
+    private static XmlDocument? GetAssetPrimaryString(XmlDocument? svg, Color fill, XmlNamespaceManager? manager)
+    {
+        var node = svg.GetAssetAttribute(asset_svg_primary, asset_svg_fill, manager);
+        if (node?.Value != null)
+        {
+            node.Value = AsString(node.Value, source, fill);
+            var root = svg?.DocumentElement;
+            while (root?.ChildNodes.Count > 1)
+            {
+                var child = root.ChildNodes[1];
+                if(child != null)
+                    root.RemoveChild(child);
+            }
+        }
+        return svg;
+    }
+
+    /// <summary>
     /// Set Asset Text
     /// </summary>
     /// <param name="svg">XML Document</param>
@@ -92,6 +116,29 @@ public class NoteAsset : AssetBase<NoteAsset>
     /// <returns>Data Uri</returns>
     public static string? GetAsDataUri(Color? target = null, string? title = null, string? content = null) => 
         Get(target, title, content).GetAsDataUri();
+
+    /// <summary>
+    /// Get Primary Asset Resource
+    /// </summary>
+    /// <param name="target">Colour</param>
+    /// <returns>Asset Resource</returns>
+    public static AssetResource GetPrimary(Color? target = null) =>
+        new(FromString(
+            GetAssetPrimaryString(
+                AsString(root, asset)
+                    .GetSvgDocument(out var manager), 
+                        target ?? source, manager)?.OuterXml ?? string.Empty) ?? 
+                            new MemoryStream(), size, size);
+
+    /// <summary>
+    /// Get Primary As Data Uri
+    /// </summary>
+    /// <param name="target">Colour</param>
+    /// <param name="title">Title</param>
+    /// <param name="content">Content</param>
+    /// <returns>Data Uri</returns>
+    public static string? GetPrimaryAsDataUri(Color? target = null) =>
+        GetPrimary(target).GetAsDataUri();
 
     /// <summary>
     /// Get Asset Primary Path Markup

@@ -50,14 +50,14 @@ public class WidgetNotes(WidgetService provider, string widgetId, string initial
     /// </summary>
     /// <returns>Widget Tenmplate</returns>
     private WidgetTemplate GetTemplate() =>
-        provider.IsImageEmpty == true ? WidgetTemplate.Configure : WidgetTemplate.Note;
+        provider.IsSelectedEmpty == true ? WidgetTemplate.Configure : WidgetTemplate.Note;
 
     /// <summary>
     /// Get Template Data
     /// </summary>
     /// <returns>Template Data</returns>
     private string GetTemplateData() => 
-        provider.IsImageEmpty == true ? configure_template : note_template;
+        provider.IsSelectedEmpty == true ? configure_template : note_template;
 
     /// <summary>
     /// Definition Id

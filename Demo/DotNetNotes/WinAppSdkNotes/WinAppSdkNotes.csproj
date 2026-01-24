@@ -54,9 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Comentsys.Toolkit.WindowsAppSdk" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4654" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260101001" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetNotes\DotNetNotes.csproj" />

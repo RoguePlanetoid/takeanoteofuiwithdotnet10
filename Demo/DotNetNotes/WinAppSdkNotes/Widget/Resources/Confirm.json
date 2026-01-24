@@ -5,6 +5,14 @@
   "header": null,
   "body": [
     {
+      "type": "TextBlock",
+      "text": "Widget Notes",
+      "weight": "Bolder",
+      "size": "Medium",
+      "horizontalAlignment": "Center",
+      "spacing": "Medium"
+    },
+    {
       "type": "Input.Text",
       "id": "Identifier",
       "value": "${note.Identifier}",

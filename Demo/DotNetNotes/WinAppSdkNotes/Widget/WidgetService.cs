@@ -19,7 +19,7 @@ public class WidgetService(FileProvider file, IApplicationProvider application)
     /// <param name="model">Note Model</param>
     /// <returns>Note Image</returns>
     private static string GetImage(NoteModel model) =>
-        model.AssetDataUri ?? string.Empty;
+        model.AssetPrimaryDataUri ?? string.Empty;
 
     /// <summary>
     /// Note Does Not Exist
@@ -43,7 +43,8 @@ public class WidgetService(FileProvider file, IApplicationProvider application)
         _widget.Notes = [.. notes.Skip((_widget.Page - 1) * page_size).Take(page_size)];
         _widget.TotalPages = (int)Math.Ceiling((double)_widget.Total / page_size);
         _widget.Note = NoteDoesNotExist(note?.Id, notes) ? notes.FirstOrDefault() : note;
-        _widget.Image = NoteDoesNotExist(_widget.ImageId, notes) ? null : _widget.Image;
+        _widget.Selected = NoteDoesNotExist(_widget.Selected?.Id, notes) ? null : _widget.Selected;
+        _widget.Image = NoteDoesNotExist(_widget.Selected?.Id, notes) ? null : _widget.Image;
         _widget.Note = note;
         file?.Save(data, _widget);
     }
@@ -84,14 +85,14 @@ public class WidgetService(FileProvider file, IApplicationProvider application)
     }
 
     /// <summary>
-    /// Set Image
+    /// Set Selected
     /// </summary>
     /// <param name="model">Note Model</param>
-    private void SetImage(NoteModel? model)
+    private void SetSelected(NoteModel? model)
     {
         if (model != null)
         {
-            _widget.ImageId = model.Id; 
+            _widget.Selected = model;
             _widget.Image = GetImage(model);
         }
     }
@@ -105,7 +106,7 @@ public class WidgetService(FileProvider file, IApplicationProvider application)
         var result = application.NewAsync(model, true).Result;
         if (result)
         {
-            SetImage(application.Content.Note);
+            SetSelected(application.Content.Note);
             Populate();
         }
     }
@@ -119,7 +120,7 @@ public class WidgetService(FileProvider file, IApplicationProvider application)
         var result = application.EditAsync(model, true).Result;
         if (result)
         {
-            SetImage(application.Content.Note);
+            SetSelected(application.Content.Note);
             Populate();
         }
     }
@@ -167,7 +168,7 @@ public class WidgetService(FileProvider file, IApplicationProvider application)
     /// <param name="data">Note Id Data</param>
     public void Select(string data)
     {
-        SetImage(application.GetAsync(GetNoteId(data)).Result);
+        SetSelected(application.GetAsync(GetNoteId(data)).Result);
         Populate();
     }
 
@@ -233,8 +234,8 @@ public class WidgetService(FileProvider file, IApplicationProvider application)
     }
 
     /// <summary>
-    /// Is Image Empty
+    /// Is Selected Empty
     /// </summary>
-    /// <returns>True if Image is Empty, False if not</returns>
-    public bool IsImageEmpty => _widget.IsImageEmpty;
+    /// <returns>True if Selected is Empty, False if not</returns>
+    public bool IsSelectedEmpty => _widget?.Note?.Id == null;
 }
