@@ -6,14 +6,14 @@
 public class WidgetModel
 {
     /// <summary>
-    /// Image Id
-    /// </summary>
-    public int? ImageId { get; set; }
-
-    /// <summary>
     /// Image
     /// </summary>
     public string? Image { get; set; }
+
+    /// <summary>
+    /// Selected
+    /// </summary>
+    public NoteModel? Selected { get; set; }
 
     /// <summary>
     /// Show Prev?
@@ -49,10 +49,4 @@ public class WidgetModel
     /// Notes
     /// </summary>
     public List<NoteModel>? Notes { get; set; }
-
-    /// <summary>
-    /// Is Image Empty?
-    /// </summary>
-    public bool IsImageEmpty => 
-        string.IsNullOrWhiteSpace(Image);
 }
