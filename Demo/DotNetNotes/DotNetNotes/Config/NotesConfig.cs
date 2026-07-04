@@ -5,7 +5,7 @@
 /// </summary>
 public class NotesConfig : INotesConfig
 {
-    private const string connection_string = "Filename=notes.db";
+    private const string connection_string = "Data Source=notes.db";
 
     /// <summary>
     /// Connection String
