@@ -15,7 +15,7 @@ internal static class Extensions
     {
         builder.Services.AddServices(new NotesConfig()
         {
-             ConnectionString = $"Filename={FileSystem.AppDataDirectory}/notes.db"
+             ConnectionString = $"Data Source={FileSystem.AppDataDirectory}/notes.db"
         })
         .AddTransient<MainPage>()
         .AddTransient<MauiDialog>();

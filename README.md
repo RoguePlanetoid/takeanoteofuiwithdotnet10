@@ -8,6 +8,7 @@ Here you can find Slides, Demo and Links for my presentation **Take a Note of UI
 
 ## Links
 
+* [klipboard.com](https://klipboard.com)
 * [comentsys.com](https://comentsys.com)
 * [rogueplanetoid.com](https://rogueplanetoid.com)
 * [tutorialr.com](https://tutorialr.com)
@@ -15,13 +16,13 @@ Here you can find Slides, Demo and Links for my presentation **Take a Note of UI
 * [github.com/rogueplanetoid](https://github.com/rogueplanetoid)
 * [dot.net](https://dot.net)
 * [visualstudio.com](https://visualstudio.com)
-* [github.com/copilot](https://github.com/copilot)
+* [github.com/app](https://github.com/app)
 * [nuget.org](https://nuget.org)
 * [nuget.org/packages/Comentsys.Toolkit](https://www.nuget.org/packages/Comentsys.Toolkit)
 * [nuget.org/packages/Comentsys.Toolkit.WindowsAppSdk](https://www.nuget.org/packages/Comentsys.Toolkit.WindowsAppSdk)
 * [nuget.org/packages/ModernWpfUI](https://www.nuget.org/packages/ModernWpfUI)
 * [nuget.org/packages/CommunityToolkit.Maui](https://www.nuget.org/packages/CommunityToolkit.Maui)
-* [Uno Platform](https://platform.uno/)
-* [Avalonia](https://avaloniaui.net/)
-* [OpenSilver](https://opensilver.net/)
+* [platform.uno](https://platform.uno/)
+* [avaloniaui.net](https://avaloniaui.net/)
+* [opensilver.net](https://opensilver.net/)
 * [github.com/rogueplanetoid/takeanoteofuiwithdotnet10](https://github.com/rogueplanetoid/takeanoteofuiwithdotnet10)

@@ -26,11 +26,11 @@ internal class NotesProvider(INotesConfig config) : INotesProvider
     /// <returns>True on Success, False if Not</returns>
     public async Task<bool> CreateAsync()
     {
-        using SqliteConnection connection = new(config.ConnectionString);
+        using SQLiteConnection connection = new(config.ConnectionString);
         try
         {
             await connection.OpenAsync();
-            SqliteCommand create = new()
+            SQLiteCommand create = new()
             {
                 Connection = connection,
                 CommandText = table_create
@@ -55,11 +55,11 @@ internal class NotesProvider(INotesConfig config) : INotesProvider
     /// <returns>Id</returns>
     public async Task<int?> AddAsync(NoteModel note)
     {
-        using SqliteConnection connection = new(config.ConnectionString);
+        using SQLiteConnection connection = new(config.ConnectionString);
         try
         {
             await connection.OpenAsync();
-            SqliteCommand insert = new()
+            SQLiteCommand insert = new()
             {
                 Connection = connection,
                 CommandText = table_insert
@@ -86,11 +86,11 @@ internal class NotesProvider(INotesConfig config) : INotesProvider
     /// <returns>Note</returns>
     public async Task<NoteModel?> GetAsync(int id)
     {
-        using SqliteConnection connection = new(config.ConnectionString);
+        using SQLiteConnection connection = new(config.ConnectionString);
         try
         {
             await connection.OpenAsync();
-            SqliteCommand get = new()
+            SQLiteCommand get = new()
             {
                 Connection = connection,
                 CommandText = table_get
@@ -126,11 +126,11 @@ internal class NotesProvider(INotesConfig config) : INotesProvider
     /// <returns>IEnumerable of Note</returns>
     public async Task<IEnumerable<NoteModel>> ListAsync()
     {
-        using SqliteConnection connection = new(config.ConnectionString);
+        using SQLiteConnection connection = new(config.ConnectionString);
         try
         {
             await connection.OpenAsync();
-            SqliteCommand list = new()
+            SQLiteCommand list = new()
             {
                 Connection = connection,
                 CommandText = table_list
@@ -167,11 +167,11 @@ internal class NotesProvider(INotesConfig config) : INotesProvider
     /// <returns>True on Success, False if Not</returns>
     public async Task<bool> EditAsync(int id, NoteModel note)
     {
-        using SqliteConnection connection = new(config.ConnectionString);
+        using SQLiteConnection connection = new(config.ConnectionString);
         try
         {
             await connection.OpenAsync();
-            SqliteCommand update = new()
+            SQLiteCommand update = new()
             {
                 Connection = connection,
                 CommandText = table_update
@@ -200,11 +200,11 @@ internal class NotesProvider(INotesConfig config) : INotesProvider
     /// <returns>True on Success, False if Not</returns>
     public async Task<bool> DeleteAsync(int id)
     {
-        using SqliteConnection connection = new(config.ConnectionString);
+        using SQLiteConnection connection = new(config.ConnectionString);
         try
         {
             await connection.OpenAsync();
-            SqliteCommand delete = new()
+            SQLiteCommand delete = new()
             {
                 Connection = connection,
                 CommandText = table_delete
@@ -229,11 +229,11 @@ internal class NotesProvider(INotesConfig config) : INotesProvider
     /// <returns>True on Success, False if Not</returns>
     public async Task<bool> DestroyAsync()
     {
-        using SqliteConnection connection = new(config.ConnectionString);
+        using SQLiteConnection connection = new(config.ConnectionString);
         try
         {
             await connection.OpenAsync();
-            SqliteCommand create = new()
+            SQLiteCommand create = new()
             {
                 Connection = connection,
                 CommandText = table_destroy
